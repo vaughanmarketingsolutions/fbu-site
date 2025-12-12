@@ -39,8 +39,8 @@ const App: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (view: View) => {
-    setCurrentView(view);
+  const handleNavClick = (view: string) => {
+    setCurrentView(view as View);
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
