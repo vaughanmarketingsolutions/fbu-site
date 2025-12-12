@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Chat } from "@google/genai";
 import { createChatSession, sendMessageToGemini } from '../services/gemini';
 import { ChatMessage, ChatSender } from '../types';
 
@@ -15,7 +14,9 @@ const AICoach: React.FC = () => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const chatSessionRef = useRef<Chat | null>(null);
+  
+  // Use 'any' type for the chat session ref since we are using a mock service
+  const chatSessionRef = useRef<any>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -52,11 +53,11 @@ const AICoach: React.FC = () => {
       };
       setMessages(prev => [...prev, botMsg]);
     } else {
-      // Fallback if no API key
+      // Fallback
       setTimeout(() => {
         setMessages(prev => [...prev, {
           id: 'error',
-          text: "I'm currently offline (API Key missing). But trust me, you look great today!",
+          text: "I'm currently offline. But trust me, you look great today!",
           sender: ChatSender.BOT,
           timestamp: new Date()
         }]);
