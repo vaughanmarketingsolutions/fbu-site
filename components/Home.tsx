@@ -5,9 +5,10 @@ import { trainers } from '../data';
 
 interface HomeProps {
   onNavigate: (page: string) => void;
+  onTrainerClick: (id: string) => void;
 }
 
-const Home: React.FC<HomeProps> = ({ onNavigate }) => {
+const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
   return (
     <>
       {/* Hero Section */}
@@ -22,7 +23,6 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         </div>
 
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <h2 className="text-brand-red font-bold tracking-[0.2em] mb-4 animate-fade-in-up">FitBodies Unlimited</h2>
           <h1 className="text-5xl md:text-7xl lg:text-9xl font-black uppercase italic leading-none mb-8">
             Unleash<br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500 pr-4">Unlimited</span>
@@ -110,13 +110,25 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           <h2 className="text-4xl font-black uppercase italic mb-12 text-center">Meet The <span className="text-brand-red">Team</span></h2>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {trainers.slice(0, 3).map((trainer) => (
-              <div key={trainer.id} className="group relative overflow-hidden bg-black border border-zinc-800">
+              <div key={trainer.id} onClick={() => onTrainerClick(trainer.id)} className="group relative overflow-hidden bg-black border border-zinc-800 cursor-pointer">
                 <div className="aspect-[3/4] overflow-hidden">
-                  <img src={trainer.image} alt={trainer.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:grayscale-0 grayscale" />
+                  <img src={trainer.image} alt={trainer.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:grayscale-0 grayscale" />
                 </div>
-                <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/90 to-transparent translate-y-2 group-hover:translate-y-0 transition-transform">
-                  <h3 className="text-2xl font-bold uppercase italic">{trainer.name}</h3>
-                  <p className="text-brand-red font-bold text-sm uppercase mb-2">{trainer.specialty}</p>
+                <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/90 to-transparent">
+                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <h3 className="text-2xl font-bold uppercase italic text-white">{trainer.name}</h3>
+                    <p className="text-brand-red font-bold text-sm uppercase mb-2">{trainer.specialty}</p>
+                    <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                      <div className="overflow-hidden">
+                         <p className="text-zinc-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 pt-2">
+                            {trainer.bio}
+                         </p>
+                         <p className="text-brand-red text-xs font-bold uppercase mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                           View Profile &rarr;
+                         </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -160,7 +172,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                 </form>
              </div>
              <div className="flex flex-col justify-center space-y-10 pl-0 md:pl-12">
-                <div><h4 className="text-2xl font-bold uppercase italic text-white mb-4 flex items-center gap-3"><span className="text-brand-red">▸</span> Location</h4><p className="text-zinc-400 text-lg">123 Fitness Blvd<br/>Strongsville, OH 44136</p></div>
+                <div>
+                  <h4 className="text-2xl font-bold uppercase italic text-white mb-4 flex items-center gap-3"><span className="text-brand-red">▸</span> Location</h4>
+                  <p className="text-white font-bold text-lg mb-1">Newport News:</p>
+                  <p className="text-zinc-400 text-lg mb-4">135 Harpersville Rd, Newport News, VA 23601</p>
+                  
+                  <p className="text-white font-bold text-lg mb-1">Yorktown:</p>
+                  <p className="text-zinc-400 text-lg">2900 Hampton Hwy I, Yorktown, VA 23693</p>
+                </div>
                 <div><h4 className="text-2xl font-bold uppercase italic text-white mb-4 flex items-center gap-3"><span className="text-brand-red">▸</span> Hours</h4><p className="text-white font-bold">Members: <span className="text-zinc-400 font-normal">24/7 Access</span></p><p className="text-white font-bold">Staff: <span className="text-zinc-400 font-normal">Mon-Fri 8am-9pm</span></p></div>
                 <div><h4 className="text-2xl font-bold uppercase italic text-white mb-4 flex items-center gap-3"><span className="text-brand-red">▸</span> Contact</h4><p className="text-brand-red font-bold text-xl">info@fitbodiesunlimited.com</p></div>
              </div>

@@ -6,8 +6,12 @@ import ClassesPage from './components/ClassesPage';
 import PersonalTrainingPage from './components/PersonalTrainingPage';
 import MembershipPage from './components/MembershipPage';
 import ContactPage from './components/ContactPage';
+import TrainerProfile from './components/TrainerProfile';
+import TrainerBookingModal from './components/TrainerBookingModal';
+import { trainers } from './data';
+import { Trainer } from './types';
 
-type View = 'home' | 'classes' | 'training' | 'membership' | 'contact';
+type View = 'home' | 'classes' | 'training' | 'membership' | 'contact' | 'trainer-profile';
 
 interface NavLinkProps {
   label: string;
@@ -26,6 +30,8 @@ const NavLink: React.FC<NavLinkProps> = ({ label, active, onClick }) => (
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('home');
+  const [selectedTrainerId, setSelectedTrainerId] = useState<string | null>(null);
+  const [bookingTrainer, setBookingTrainer] = useState<Trainer | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [quizOpen, setQuizOpen] = useState(false);
@@ -51,20 +57,40 @@ const App: React.FC = () => {
     setMobileMenuOpen(false);
   };
 
+  const handleTrainerClick = (trainerId: string) => {
+    setSelectedTrainerId(trainerId);
+    setCurrentView('trainer-profile');
+    setMobileMenuOpen(false);
+  };
+
+  const handleBookTrainer = (trainer: Trainer) => {
+    setBookingTrainer(trainer);
+  };
+
   const renderContent = () => {
     switch (currentView) {
       case 'home':
-        return <Home onNavigate={handleNavClick} />;
+        return <Home onNavigate={handleNavClick} onTrainerClick={handleTrainerClick} />;
       case 'classes':
         return <ClassesPage />;
       case 'training':
-        return <PersonalTrainingPage />;
+        return <PersonalTrainingPage onTrainerClick={handleTrainerClick} />;
       case 'membership':
         return <MembershipPage onJoinClick={handleJoinClick} />;
       case 'contact':
         return <ContactPage />;
+      case 'trainer-profile':
+        const trainer = trainers.find(t => t.id === selectedTrainerId);
+        if (!trainer) return <PersonalTrainingPage onTrainerClick={handleTrainerClick} />;
+        return (
+          <TrainerProfile 
+            trainer={trainer} 
+            onBack={() => setCurrentView('training')} 
+            onBook={() => handleBookTrainer(trainer)}
+          />
+        );
       default:
-        return <Home onNavigate={handleNavClick} />;
+        return <Home onNavigate={handleNavClick} onTrainerClick={handleTrainerClick} />;
     }
   };
 
@@ -72,6 +98,14 @@ const App: React.FC = () => {
     <div className="bg-black min-h-screen text-white overflow-x-hidden flex flex-col">
       {/* Quiz Modal */}
       {quizOpen && <JoinQuiz onClose={() => setQuizOpen(false)} initialMode={quizInitialMode} />}
+
+      {/* Booking Modal */}
+      {bookingTrainer && (
+        <TrainerBookingModal 
+          trainer={bookingTrainer} 
+          onClose={() => setBookingTrainer(null)} 
+        />
+      )}
 
       {/* Header */}
       <nav 
@@ -91,7 +125,7 @@ const App: React.FC = () => {
           <div className="hidden md:flex gap-10 lg:gap-14 items-center">
             <NavLink label="Home" active={currentView === 'home'} onClick={() => handleNavClick('home')} />
             <NavLink label="Classes" active={currentView === 'classes'} onClick={() => handleNavClick('classes')} />
-            <NavLink label="Trainers" active={currentView === 'training'} onClick={() => handleNavClick('training')} />
+            <NavLink label="Trainers" active={currentView === 'training' || currentView === 'trainer-profile'} onClick={() => handleNavClick('training')} />
             <NavLink label="Membership" active={currentView === 'membership'} onClick={() => handleNavClick('membership')} />
             <NavLink label="Contact" active={currentView === 'contact'} onClick={() => handleNavClick('contact')} />
           </div>
@@ -140,11 +174,15 @@ const App: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-1 md:col-span-2">
-              <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="text-3xl font-black italic tracking-tighter uppercase mb-6 block">
-                <span className="text-brand-red">Fit</span>Bodies
+              <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="mb-6 block">
+                <img 
+                  src="https://imgur.com/Hz1tXb2.png" 
+                  alt="Fit Bodies Unlimited" 
+                  className="h-12 md:h-16 object-contain" 
+                />
               </a>
               <p className="text-zinc-500 max-w-sm mb-6">
-                Pushing limits since 2010. We are dedicated to providing the best equipment, atmosphere, and training to help you achieve your goals.
+                Pushing limits since 2003. We are dedicated to providing the best equipment, atmosphere, and training to help you achieve your goals.
               </p>
               <div className="flex gap-4">
                 {[1, 2, 3].map(i => (
@@ -167,8 +205,12 @@ const App: React.FC = () => {
             
             <div>
               <h4 className="text-white font-bold uppercase mb-6">Visit Us</h4>
-              <p className="text-zinc-500 mb-2">123 Fitness Blvd</p>
-              <p className="text-zinc-500 mb-2">Strongsville, OH 44136</p>
+              <p className="text-white font-bold mb-1">Newport News:</p>
+              <p className="text-zinc-500 mb-4">135 Harpersville Rd, Newport News, VA 23601</p>
+              
+              <p className="text-white font-bold mb-1">Yorktown:</p>
+              <p className="text-zinc-500 mb-4">2900 Hampton Hwy I, Yorktown, VA 23693</p>
+
               <p className="text-zinc-500 mb-6">info@fitbodiesunlimited.com</p>
               <p className="text-brand-red font-bold">Open 24/7 for Members</p>
             </div>

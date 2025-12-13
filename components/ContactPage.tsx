@@ -16,8 +16,11 @@ const ContactPage: React.FC = () => {
              <div className="space-y-8 animate-fade-in">
                 <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-lg">
                    <h4 className="text-xl font-bold uppercase italic text-white mb-4">Location</h4>
-                   <p className="text-zinc-400">123 Fitness Blvd</p>
-                   <p className="text-zinc-400">Strongsville, OH 44136</p>
+                   <p className="text-white font-bold mb-1">Newport News:</p>
+                   <p className="text-zinc-400 mb-4">135 Harpersville Rd, Newport News, VA 23601</p>
+                   
+                   <p className="text-white font-bold mb-1">Yorktown:</p>
+                   <p className="text-zinc-400">2900 Hampton Hwy I, Yorktown, VA 23693</p>
                    <div className="mt-4 aspect-video w-full bg-zinc-800 rounded flex items-center justify-center border border-zinc-700">
                       <span className="text-zinc-500 text-sm">Interactive Map</span>
                    </div>
@@ -30,7 +33,7 @@ const ContactPage: React.FC = () => {
                      <div><p className="text-white font-bold text-sm">Staffed Hours</p><p className="text-zinc-400 text-sm">Mon-Fri: 8am - 9pm</p></div>
                      <div className="col-span-2 border-t border-zinc-800 pt-4 mt-2">
                         <p className="text-brand-red font-bold">info@fitbodiesunlimited.com</p>
-                        <p className="text-white">(555) 123-4567</p>
+                        <p className="text-white">757-344-9844</p>
                      </div>
                    </div>
                 </div>

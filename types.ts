@@ -4,6 +4,8 @@ export interface Trainer {
   specialty: string;
   bio: string;
   image: string;
+  fullBio?: string[]; // Array of paragraphs
+  certifications?: string[];
 }
 
 export interface ClassSession {
