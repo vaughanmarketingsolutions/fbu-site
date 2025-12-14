@@ -4,18 +4,20 @@ export const trainers: Trainer[] = [
   { 
     id: '1', 
     name: 'George Gori', 
-    specialty: 'Owner & Head Coach', 
-    bio: 'Leading the team with expert knowledge in strength training and personalized fitness strategies.', 
-    image: 'https://placehold.co/400x500/18181b/ffffff?text=George+Gori',
+    specialty: 'Owner & Personal Trainer', 
+    bio: 'Specializing in Rehab, Functional Movement, and helping clients become more functional while pushing their limits.', 
+    image: 'https://i.imgur.com/lV05KBG.jpeg',
     fullBio: [
-      "As the Owner and Head Coach of Fit Bodies Unlimited, George brings decades of experience to the floor. His philosophy is built on the foundation that fitness is not a temporary fix but a lifelong journey.",
-      "George specializes in strength training, structural balance, and injury prevention. He has worked with hundreds of clients ranging from professional athletes to those just starting their fitness journey.",
-      "When you train with George, you aren't just moving weights; you are learning the 'why' behind every movement. His attention to detail ensures that you progress safely and effectively."
+      "As the Owner and Personal Trainer, George specializes in Rehab, Functional Movement, Weight Training, Cardiovascular Programming, and Mobility.",
+      "His preferred client matches are adults who want to be more functional, love to sweat, and be pushed! He also deeply values working with people who need support on the mental side of health and fitness.",
+      "Fun Fact: Love Jesus! Happily Married with 5 kids! Favorite Food: My homemade Pizza!"
     ],
     certifications: [
-      "NSCA Certified Strength & Conditioning Specialist", 
-      "USA Weightlifting Coach", 
-      "Precision Nutrition Level 1"
+      "NETA", 
+      "Scirion Institute of Exercise Physiology", 
+      "FITT",
+      "Functional Movement",
+      "CPR/AED"
     ]
   },
   { 

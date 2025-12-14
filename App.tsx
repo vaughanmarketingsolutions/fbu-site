@@ -97,7 +97,7 @@ const App: React.FC = () => {
   return (
     <div className="bg-black min-h-screen text-white overflow-x-hidden flex flex-col">
       {/* Quiz Modal */}
-      {quizOpen && <JoinQuiz onClose={() => setQuizOpen(false)} initialMode={quizInitialMode} />}
+      {quizOpen && <JoinQuiz onClose={() => setQuizOpen(false)} initialMode={quizInitialMode} onTrainerSelect={handleTrainerClick} />}
 
       {/* Booking Modal */}
       {bookingTrainer && (

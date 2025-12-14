@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { trainers } from '../data';
 
 type QuizStep = 'category' | 'membership-info' | 'membership-type' | 'results';
 type Category = 'membership' | 'classes' | 'training';
@@ -16,9 +17,10 @@ interface JoinQuizProps {
   onClose?: () => void;
   inline?: boolean;
   initialMode?: MembershipType | null;
+  onTrainerSelect?: (trainerId: string) => void;
 }
 
-const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMode = null }) => {
+const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMode = null, onTrainerSelect }) => {
   const [step, setStep] = useState<QuizStep>(initialMode ? 'results' : 'category');
   const [category, setCategory] = useState<Category | null>(initialMode ? 'membership' : null);
   const [memType, setMemType] = useState<MembershipType | null>(initialMode);
@@ -121,14 +123,47 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
     
     if (category === 'training') {
       return (
-        <div className="text-center">
-          <h3 className="text-2xl font-bold uppercase italic text-white mb-4">Expert Coaching</h3>
-          <p className="text-zinc-400 mb-8">
-            Our personal trainers are elite athletes ready to help you reach your peak. 
-          </p>
-          <a href="#trainers" onClick={() => handleAction('#trainers')} className="bg-brand-red text-white px-8 py-3 font-bold uppercase inline-block hover:bg-red-600 transition-colors">
-            Meet Trainers
-          </a>
+        <div className="animate-fade-in flex flex-col h-full">
+          <div className="text-center mb-6 shrink-0">
+             <h3 className="text-2xl font-bold uppercase italic text-white mb-2">Select Your Coach</h3>
+             <p className="text-zinc-400 text-sm">Tap a trainer to view profile & book.</p>
+          </div>
+          
+          <div className={`grid md:grid-cols-2 gap-4 overflow-y-auto pr-2 custom-scrollbar ${inline ? '' : 'max-h-[50vh]'}`}>
+             {trainers.map((trainer) => (
+                <button 
+                  key={trainer.id} 
+                  onClick={() => {
+                    if (onTrainerSelect) {
+                        onTrainerSelect(trainer.id);
+                        if (onClose) onClose();
+                    } else {
+                        handleAction('#trainers');
+                    }
+                  }}
+                  className="bg-zinc-800 p-3 rounded-lg border border-zinc-700 hover:border-brand-red hover:bg-zinc-750 text-left flex gap-4 transition-all group items-center"
+                >
+                   <div className="w-16 h-16 rounded-full overflow-hidden border border-zinc-600 shrink-0">
+                      <img src={trainer.image} alt={trainer.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                   </div>
+                   <div className="min-w-0 flex-1">
+                      <h4 className="text-white font-bold uppercase italic truncate">{trainer.name}</h4>
+                      <p className="text-brand-red text-xs font-bold uppercase mb-1 truncate">{trainer.specialty}</p>
+                   </div>
+                   <div className="opacity-0 group-hover:opacity-100 transition-opacity text-brand-red">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                   </div>
+                </button>
+             ))}
+          </div>
+          
+          <div className="mt-6 text-center shrink-0">
+            <a href="#trainers" onClick={() => handleAction('#trainers')} className="text-zinc-500 text-xs font-bold uppercase hover:text-white transition-colors">
+                View All Details on Main Page
+            </a>
+          </div>
         </div>
       );
     }
@@ -383,8 +418,8 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
         )}
 
         {step === 'results' && (
-            <div className="animate-fade-in">
-              <div className="mb-6">
+            <div className="animate-fade-in h-full flex flex-col">
+              <div className="mb-6 shrink-0">
                 {!initialMode && (
                   <button 
                     onClick={() => category === 'membership' ? setStep('membership-type') : setStep('category')}
@@ -394,7 +429,9 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
                   </button>
                 )}
               </div>
-              {getResults()}
+              <div className="flex-1 min-h-0">
+                  {getResults()}
+              </div>
             </div>
         )}
       </div>

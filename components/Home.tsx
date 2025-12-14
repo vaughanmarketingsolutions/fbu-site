@@ -9,6 +9,13 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
+  const scrollToOfferings = () => {
+    const element = document.getElementById('offerings');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -34,16 +41,10 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <button 
-              onClick={() => onNavigate('membership')}
+              onClick={scrollToOfferings}
               className="bg-brand-red text-white px-8 py-4 font-black uppercase tracking-wider hover:bg-red-600 transition-colors"
             >
               Start Your Journey
-            </button>
-            <button 
-              onClick={() => onNavigate('classes')}
-              className="border border-white text-white px-8 py-4 font-black uppercase tracking-wider hover:bg-white hover:text-black transition-colors"
-            >
-              View Schedule
             </button>
           </div>
         </div>
@@ -149,7 +150,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
             <p className="text-zinc-500 mt-4">Find the perfect plan for your goals.</p>
           </div>
           <div className="max-w-7xl mx-auto">
-            <JoinQuiz inline />
+            <JoinQuiz inline onTrainerSelect={onTrainerClick} />
           </div>
         </div>
       </section>
