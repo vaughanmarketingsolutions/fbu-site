@@ -20,7 +20,12 @@ const AICoach: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    chatSessionRef.current = createChatSession();
+    try {
+      chatSessionRef.current = createChatSession();
+    } catch (e) {
+      console.warn("AI Coach initialization failed:", e);
+      // We continue without a session, handleSend will manage fallback
+    }
   }, []);
 
   useEffect(() => {
@@ -44,20 +49,29 @@ const AICoach: React.FC = () => {
     setIsTyping(true);
 
     if (chatSessionRef.current) {
-      const responseText = await sendMessageToGemini(chatSessionRef.current, userMsg.text);
-      const botMsg: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        text: responseText,
-        sender: ChatSender.BOT,
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, botMsg]);
+      try {
+        const responseText = await sendMessageToGemini(chatSessionRef.current, userMsg.text);
+        const botMsg: ChatMessage = {
+          id: (Date.now() + 1).toString(),
+          text: responseText,
+          sender: ChatSender.BOT,
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, botMsg]);
+      } catch (error) {
+         setMessages(prev => [...prev, {
+          id: 'error',
+          text: "Coach Red is taking a breather (Network Error). Try again!",
+          sender: ChatSender.BOT,
+          timestamp: new Date()
+        }]);
+      }
     } else {
       // Fallback
       setTimeout(() => {
         setMessages(prev => [...prev, {
           id: 'error',
-          text: "I'm currently offline. But trust me, you look great today!",
+          text: "I'm currently offline (API Key Missing). But trust me, you look great today!",
           sender: ChatSender.BOT,
           timestamp: new Date()
         }]);

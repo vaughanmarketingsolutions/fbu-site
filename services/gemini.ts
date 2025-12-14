@@ -1,7 +1,11 @@
 import { GoogleGenAI, Chat } from "@google/genai";
 
 export const createChatSession = () => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+    throw new Error("API Key is missing. Check your metadata.json or environment variables.");
+  }
+  const ai = new GoogleGenAI({ apiKey });
   const chat: Chat = ai.chats.create({
     model: 'gemini-2.5-flash',
     config: {
