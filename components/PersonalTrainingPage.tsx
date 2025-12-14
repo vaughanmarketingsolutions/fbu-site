@@ -29,7 +29,7 @@ const PersonalTrainingPage: React.FC<PersonalTrainingPageProps> = ({ onTrainerCl
                   <img 
                     src={trainer.image} 
                     alt={trainer.name} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:grayscale-0 grayscale"
+                    className={`w-full h-full object-cover transition-transform duration-700 group-hover:grayscale-0 grayscale ${trainer.id === '1' ? 'scale-100 group-hover:scale-110' : 'scale-125 group-hover:scale-[1.35]'}`}
                   />
                 </div>
                 <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/90 to-transparent">

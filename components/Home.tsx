@@ -113,7 +113,11 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
             {trainers.slice(0, 3).map((trainer) => (
               <div key={trainer.id} onClick={() => onTrainerClick(trainer.id)} className="group relative overflow-hidden bg-black border border-zinc-800 cursor-pointer">
                 <div className="aspect-[3/4] overflow-hidden">
-                  <img src={trainer.image} alt={trainer.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:grayscale-0 grayscale" />
+                  <img 
+                    src={trainer.image} 
+                    alt={trainer.name} 
+                    className={`w-full h-full object-cover transition-transform duration-700 group-hover:grayscale-0 grayscale ${trainer.id === '1' ? 'scale-100 group-hover:scale-110' : 'scale-125 group-hover:scale-[1.35]'}`} 
+                  />
                 </div>
                 <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/90 to-transparent">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">

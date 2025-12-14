@@ -144,7 +144,11 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
                   className="bg-zinc-800 p-3 rounded-lg border border-zinc-700 hover:border-brand-red hover:bg-zinc-750 text-left flex gap-4 transition-all group items-center"
                 >
                    <div className="w-16 h-16 rounded-full overflow-hidden border border-zinc-600 shrink-0">
-                      <img src={trainer.image} alt={trainer.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                      <img 
+                        src={trainer.image} 
+                        alt={trainer.name} 
+                        className={`w-full h-full object-cover transition-transform duration-500 ${trainer.id === '1' ? 'group-hover:scale-110' : 'scale-125 group-hover:scale-[1.35]'}`}
+                      />
                    </div>
                    <div className="min-w-0 flex-1">
                       <h4 className="text-white font-bold uppercase italic truncate">{trainer.name}</h4>

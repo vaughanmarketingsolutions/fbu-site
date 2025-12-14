@@ -77,7 +77,11 @@ const TrainerBookingModal: React.FC<TrainerBookingModalProps> = ({ trainer, onCl
         <div className="bg-black p-6 border-b border-zinc-800 flex justify-between items-center shrink-0">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full overflow-hidden border border-zinc-700">
-                <img src={trainer.image} alt={trainer.name} className="w-full h-full object-cover" />
+                <img 
+                  src={trainer.image} 
+                  alt={trainer.name} 
+                  className={`w-full h-full object-cover ${trainer.id === '1' ? '' : 'scale-125'}`}
+                />
             </div>
             <div>
                 <h3 className="text-xl font-bold uppercase italic text-white leading-none">Train with {trainerFirstName}</h3>
