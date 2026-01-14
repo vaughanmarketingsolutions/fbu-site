@@ -11,6 +11,7 @@ interface Plan {
   period: string;
   features: string[];
   notes?: string[];
+  externalUrl: string;
 }
 
 interface JoinQuizProps {
@@ -31,14 +32,16 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
       price: "$9.99",
       period: "Weekly",
       features: ["24/7 Access to BOTH Locations", "1 Free 45min PT Session", "Price Locked for 1 Year"],
-      notes: ["1 Year Commitment", "Billed Weekly"]
+      notes: ["1 Year Commitment", "Billed Weekly"],
+      externalUrl: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/61ed3a5f393be002f7bf5c80f1812528"
     },
     {
       title: "Week-To-Week / No Contract",
       price: "$13.49",
       period: "Weekly",
       features: ["24/7 Access to BOTH Locations", "1 Free 45min PT Session", "Cancel w/ 7 Day Notice"],
-      notes: ["Min 1 Month Commitment", "Billed Weekly"]
+      notes: ["Min 1 Month Commitment", "Billed Weekly"],
+      externalUrl: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/71fce85d6b5dfa7d3db3c798f4cde498"
     }
   ];
 
@@ -48,28 +51,32 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
       price: "$449.00",
       period: "One Time",
       features: ["24/7 Access to BOTH Locations", "2 Free 30min PT Sessions"],
-      notes: ["Paid in Full", "Best Value"]
+      notes: ["Paid in Full", "Best Value"],
+      externalUrl: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/95a0ff756b49e2fa68c5dbd533c4e09a"
     },
     {
       title: "6 Month Membership",
       price: "$229.00",
       period: "One Time",
       features: ["24/7 Access to BOTH Locations", "2 Free 30min PT Sessions"],
-      notes: ["Paid in Full"]
+      notes: ["Paid in Full"],
+      externalUrl: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/0adeb9f3008a31bcaf6afb1a4cb7fff8"
     },
     {
       title: "2 Month Membership",
       price: "$99.00",
       period: "One Time",
       features: ["24/7 Access to BOTH Locations", "2 Free 30min PT Sessions"],
-      notes: ["Paid in Full"]
+      notes: ["Paid in Full"],
+      externalUrl: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/dbc0947ba1e1efd13d0467e4ff65a557"
     },
     {
       title: "1 Month Membership",
       price: "$55.00",
       period: "One Time",
       features: ["24/7 Access to BOTH Locations", "1 Free 30min PT Session"],
-      notes: ["Paid in Full"]
+      notes: ["Paid in Full"],
+      externalUrl: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/36a0bd84acde312fc3196f3ac9e80161"
     }
   ];
 
@@ -110,11 +117,11 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
     if (category === 'classes') {
       return (
         <div className="text-center">
-          <h3 className="text-2xl font-bold uppercase italic text-white mb-4">Class Schedule</h3>
-          <p className="text-zinc-400 mb-8">
+          <h3 className="text-xl md:text-2xl font-bold uppercase italic text-white mb-4">Class Schedule</h3>
+          <p className="text-zinc-400 mb-8 text-sm md:text-base">
             We offer a variety of high-intensity and recovery classes. Check out our schedule to book your spot!
           </p>
-          <a href="#classes" onClick={() => handleAction('#classes')} className="bg-brand-red text-white px-8 py-3 font-bold uppercase inline-block hover:bg-red-600 transition-colors">
+          <a href="#classes" onClick={() => handleAction('#classes')} className="bg-brand-red text-white px-8 py-3 font-bold uppercase inline-block hover:bg-red-600 transition-colors text-sm">
             View Schedule
           </a>
         </div>
@@ -125,8 +132,8 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
       return (
         <div className="animate-fade-in flex flex-col h-full">
           <div className="text-center mb-6 shrink-0">
-             <h3 className="text-2xl font-bold uppercase italic text-white mb-2">Select Your Coach</h3>
-             <p className="text-zinc-400 text-sm">Tap a trainer to view profile & book.</p>
+             <h3 className="text-xl md:text-2xl font-bold uppercase italic text-white mb-2">Select Your Coach</h3>
+             <p className="text-zinc-400 text-xs md:text-sm">Tap a trainer to view profile & book.</p>
           </div>
           
           <div className={`grid md:grid-cols-2 gap-4 overflow-y-auto pr-2 custom-scrollbar ${inline ? '' : 'max-h-[50vh]'}`}>
@@ -143,7 +150,7 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
                   }}
                   className="bg-zinc-800 p-3 rounded-lg border border-zinc-700 hover:border-brand-red hover:bg-zinc-750 text-left flex gap-4 transition-all group items-center"
                 >
-                   <div className="w-16 h-16 rounded-full overflow-hidden border border-zinc-600 shrink-0">
+                   <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border border-zinc-600 shrink-0">
                       <img 
                         src={trainer.image} 
                         alt={trainer.name} 
@@ -151,11 +158,11 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
                       />
                    </div>
                    <div className="min-w-0 flex-1">
-                      <h4 className="text-white font-bold uppercase italic truncate">{trainer.name}</h4>
-                      <p className="text-brand-red text-xs font-bold uppercase mb-1 truncate">{trainer.specialty}</p>
+                      <h4 className="text-white font-bold uppercase italic truncate text-sm md:text-base">{trainer.name}</h4>
+                      <p className="text-brand-red text-[10px] md:text-xs font-bold uppercase mb-1 truncate">{trainer.specialty}</p>
                    </div>
-                   <div className="opacity-0 group-hover:opacity-100 transition-opacity text-brand-red">
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <div className="opacity-0 group-hover:opacity-100 transition-opacity text-brand-red shrink-0">
+                      <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                    </div>
@@ -164,7 +171,7 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
           </div>
           
           <div className="mt-6 text-center shrink-0">
-            <a href="#trainers" onClick={() => handleAction('#trainers')} className="text-zinc-500 text-xs font-bold uppercase hover:text-white transition-colors">
+            <a href="#trainers" onClick={() => handleAction('#trainers')} className="text-zinc-500 text-[10px] md:text-xs font-bold uppercase hover:text-white transition-colors">
                 View All Details on Main Page
             </a>
           </div>
@@ -188,40 +195,45 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
       }
 
       const containerClasses = inline 
-        ? "grid md:grid-cols-2 gap-6" 
+        ? "grid md:grid-cols-2 gap-4 md:gap-6" 
         : "grid md:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar";
 
       return (
         <div className="animate-fade-in-up">
-          <h3 className="text-2xl font-bold uppercase italic text-white mb-6 text-center">{title}</h3>
+          <h3 className="text-xl md:text-2xl font-bold uppercase italic text-white mb-6 text-center leading-tight">{title}</h3>
           <div className={containerClasses}>
             {plans.map((plan, idx) => (
-              <div key={idx} className="bg-zinc-800 p-6 border border-zinc-700 hover:border-brand-red transition-colors relative flex flex-col">
+              <div key={idx} className="bg-zinc-800 p-5 md:p-6 border border-zinc-700 hover:border-brand-red transition-colors relative flex flex-col">
                 <div className="mb-4">
-                  <h4 className="text-xl font-bold uppercase text-white leading-tight">{plan.title}</h4>
-                  <div className="mt-3">
-                    <span className="text-3xl font-black text-brand-red">{plan.price}</span>
-                    <span className="text-zinc-500 text-xs font-bold ml-1 uppercase block md:inline"> / {plan.period}</span>
+                  <h4 className="text-lg md:text-xl font-bold uppercase text-white leading-tight">{plan.title}</h4>
+                  <div className="mt-2 md:mt-3">
+                    <span className="text-2xl md:text-3xl font-black text-brand-red">{plan.price}</span>
+                    <span className="text-zinc-500 text-[10px] md:text-xs font-bold ml-1 uppercase"> / {plan.period}</span>
                   </div>
                 </div>
                 
-                <ul className="space-y-2 mb-6 flex-1">
+                <ul className="space-y-1.5 md:space-y-2 mb-6 flex-1">
                   {plan.features.map((f, i) => (
-                    <li key={i} className="text-zinc-300 text-sm flex items-start gap-2">
-                      <span className="text-brand-red mt-1">▸</span> {f}
+                    <li key={i} className="text-zinc-300 text-xs md:text-sm flex items-start gap-2">
+                      <span className="text-brand-red mt-1 shrink-0">▸</span> {f}
                     </li>
                   ))}
                 </ul>
 
                 {plan.notes && (
-                  <div className="mb-4 text-xs text-zinc-400 italic border-t border-zinc-700 pt-2">
+                  <div className="mb-4 text-[10px] md:text-xs text-zinc-400 italic border-t border-zinc-700 pt-2">
                     {plan.notes.join(' • ')}
                   </div>
                 )}
 
-                <button className="w-full bg-white text-black font-black uppercase py-3 hover:bg-brand-red hover:text-white transition-colors">
+                <a 
+                  href={plan.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-white text-black font-black uppercase py-2.5 md:py-3 hover:bg-brand-red hover:text-white transition-colors text-center text-xs md:text-sm"
+                >
                   Select Plan
-                </button>
+                </a>
               </div>
             ))}
           </div>
@@ -231,18 +243,18 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
   };
 
   const Content = (
-    <div className={`relative z-10 w-full bg-zinc-900 border border-zinc-800 shadow-2xl overflow-hidden flex flex-col ${inline ? '' : 'max-w-4xl max-h-[90vh]'}`}>
+    <div className={`relative z-10 w-full bg-zinc-900 border border-zinc-800 shadow-2xl overflow-hidden flex flex-col ${inline ? '' : 'max-w-4xl max-h-[95vh] md:max-h-[90vh]'}`}>
       {/* Header */}
-      <div className="bg-black p-6 flex justify-between items-center border-b border-zinc-800">
+      <div className="bg-black p-4 md:p-6 flex justify-between items-center border-b border-zinc-800">
         <div>
-          <h2 className="text-2xl font-black uppercase italic text-white">
+          <h2 className="text-xl md:text-2xl font-black uppercase italic text-white leading-none">
             <span className="text-brand-red">Join</span> FitBodies
           </h2>
-          <p className="text-zinc-500 text-xs uppercase tracking-widest mt-1">Customize your experience</p>
+          <p className="text-zinc-500 text-[10px] md:text-xs uppercase tracking-widest mt-1">Customize your experience</p>
         </div>
         {!inline && onClose && (
           <button onClick={onClose} className="text-zinc-500 hover:text-white transition-colors">
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -258,48 +270,48 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
       </div>
 
       {/* Body */}
-      <div className={`${inline ? 'p-8 md:p-16' : 'p-6 md:p-12'} overflow-y-auto flex-1`}>
+      <div className={`${inline ? 'p-5 md:p-16' : 'p-5 md:p-12'} overflow-y-auto flex-1`}>
         {step === 'category' && (
           <div className="animate-fade-in text-center">
-            <h3 className="text-3xl md:text-5xl font-black uppercase italic text-white mb-8 md:mb-16">What are you looking for?</h3>
-            <div className="grid md:grid-cols-3 gap-6">
+            <h3 className="text-2xl md:text-5xl font-black uppercase italic text-white mb-8 md:mb-16">What are you looking for?</h3>
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
               <button 
                 onClick={() => handleCategorySelect('membership')}
-                className="group bg-zinc-800 p-10 md:p-14 hover:bg-brand-red transition-all duration-300 transform hover:-translate-y-2 text-center border border-zinc-700 hover:border-brand-red"
+                className="group bg-zinc-800 p-6 md:p-14 hover:bg-brand-red transition-all duration-300 transform md:hover:-translate-y-2 text-center border border-zinc-700 hover:border-brand-red"
               >
-                <div className="w-16 h-16 bg-black rounded-full mx-auto mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
-                  <svg className="w-8 h-8 text-white group-hover:text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-black rounded-full mx-auto mb-4 md:mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                   </svg>
                 </div>
-                <h4 className="text-xl font-black uppercase italic">Membership</h4>
-                <p className="text-zinc-400 text-sm mt-2 group-hover:text-white/90">24/7 Access & Amenities</p>
+                <h4 className="text-lg md:text-xl font-black uppercase italic">Membership</h4>
+                <p className="text-zinc-400 text-xs mt-2 group-hover:text-white/90">24/7 Access & Amenities</p>
               </button>
 
               <button 
                 onClick={() => handleCategorySelect('classes')}
-                className="group bg-zinc-800 p-10 md:p-14 hover:bg-brand-red transition-all duration-300 transform hover:-translate-y-2 text-center border border-zinc-700 hover:border-brand-red"
+                className="group bg-zinc-800 p-6 md:p-14 hover:bg-brand-red transition-all duration-300 transform md:hover:-translate-y-2 text-center border border-zinc-700 hover:border-brand-red"
               >
-                <div className="w-16 h-16 bg-black rounded-full mx-auto mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
-                  <svg className="w-8 h-8 text-white group-hover:text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-black rounded-full mx-auto mb-4 md:mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h4 className="text-xl font-black uppercase italic">Classes</h4>
-                <p className="text-zinc-400 text-sm mt-2 group-hover:text-white/90">HIIT, Yoga, & Spin</p>
+                <h4 className="text-lg md:text-xl font-black uppercase italic">Classes</h4>
+                <p className="text-zinc-400 text-xs mt-2 group-hover:text-white/90">HIIT, Yoga, & Spin</p>
               </button>
 
               <button 
                 onClick={() => handleCategorySelect('training')}
-                className="group bg-zinc-800 p-10 md:p-14 hover:bg-brand-red transition-all duration-300 transform hover:-translate-y-2 text-center border border-zinc-700 hover:border-brand-red"
+                className="group bg-zinc-800 p-6 md:p-14 hover:bg-brand-red transition-all duration-300 transform md:hover:-translate-y-2 text-center border border-zinc-700 hover:border-brand-red"
               >
-                <div className="w-16 h-16 bg-black rounded-full mx-auto mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
-                  <svg className="w-8 h-8 text-white group-hover:text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-black rounded-full mx-auto mb-4 md:mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <h4 className="text-xl font-black uppercase italic">Personal Training</h4>
-                <p className="text-zinc-400 text-sm mt-2 group-hover:text-white/90">1-on-1 Coaching</p>
+                <h4 className="text-lg md:text-xl font-black uppercase italic">Personal Training</h4>
+                <p className="text-zinc-400 text-xs mt-2 group-hover:text-white/90">1-on-1 Coaching</p>
               </button>
             </div>
           </div>
@@ -307,68 +319,68 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
 
         {step === 'membership-info' && (
           <div className="animate-fade-in text-center max-w-5xl mx-auto">
-            <div className="mb-8">
+            <div className="mb-6 md:mb-8">
               <button 
                 onClick={() => setStep('category')}
-                className="text-zinc-500 hover:text-white text-sm uppercase font-bold flex items-center justify-center gap-2 mx-auto"
+                className="text-zinc-500 hover:text-white text-xs md:text-sm uppercase font-bold flex items-center justify-center gap-2 mx-auto"
               >
                 ← Back
               </button>
             </div>
             
-            <h3 className="text-3xl md:text-5xl font-black uppercase italic text-white mb-6">More Than Just A Gym</h3>
-            <p className="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto mb-12">
+            <h3 className="text-2xl md:text-5xl font-black uppercase italic text-white mb-4 md:mb-6 leading-tight">More Than Just A Gym</h3>
+            <p className="text-zinc-400 text-base md:text-xl max-w-2xl mx-auto mb-8 md:mb-12">
               Join a community dedicated to strength, resilience, and results. We provide the tools; you bring the effort.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-12 text-left mb-16">
-                <div className="bg-zinc-800/50 p-8 border border-zinc-800 rounded-lg">
-                    <h4 className="text-2xl font-bold uppercase italic text-white mb-6 flex items-center gap-3">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-12 text-left mb-10 md:mb-16">
+                <div className="bg-zinc-800/50 p-6 md:p-8 border border-zinc-800 rounded-lg">
+                    <h4 className="text-xl md:text-2xl font-bold uppercase italic text-white mb-4 md:mb-6 flex items-center gap-3">
                       <span className="text-brand-red">01.</span> The Facility
                     </h4>
-                    <ul className="space-y-4">
+                    <ul className="space-y-3 md:space-y-4">
                       <li className="flex items-start gap-4">
-                        <div className="bg-zinc-900 p-2 rounded-full text-brand-red">
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11.536 9.636a6 6 0 113.636 3.636l-2.036 1.545M16 5v6" /></svg>
+                        <div className="bg-zinc-900 p-2 rounded-full text-brand-red shrink-0">
+                          <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11.536 9.636a6 6 0 113.636 3.636l-2.036 1.545M16 5v6" /></svg>
                         </div>
                         <div>
-                          <strong className="block text-white">24/7 Key Fob Access</strong>
-                          <span className="text-zinc-400 text-sm">Train on your schedule, day or night.</span>
+                          <strong className="block text-white text-sm md:text-base">24/7 Key Fob Access</strong>
+                          <span className="text-zinc-400 text-[11px] md:text-sm">Train on your schedule, day or night.</span>
                         </div>
                       </li>
                       <li className="flex items-start gap-4">
-                        <div className="bg-zinc-900 p-2 rounded-full text-brand-red">
-                           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                        <div className="bg-zinc-900 p-2 rounded-full text-brand-red shrink-0">
+                           <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
                         </div>
                         <div>
-                          <strong className="block text-white">Elite Equipment</strong>
-                          <span className="text-zinc-400 text-sm">Hammer Strength, Rogue racks, and specialty bars.</span>
+                          <strong className="block text-white text-sm md:text-base">Elite Equipment</strong>
+                          <span className="text-zinc-400 text-[11px] md:text-sm">Hammer Strength, Rogue racks, and specialty bars.</span>
                         </div>
                       </li>
                     </ul>
                 </div>
 
-                <div className="bg-zinc-800/50 p-8 border border-zinc-800 rounded-lg">
-                    <h4 className="text-2xl font-bold uppercase italic text-white mb-6 flex items-center gap-3">
+                <div className="bg-zinc-800/50 p-6 md:p-8 border border-zinc-800 rounded-lg">
+                    <h4 className="text-xl md:text-2xl font-bold uppercase italic text-white mb-4 md:mb-6 flex items-center gap-3">
                       <span className="text-brand-red">02.</span> The Perks
                     </h4>
-                    <ul className="space-y-4">
+                    <ul className="space-y-3 md:space-y-4">
                       <li className="flex items-start gap-4">
-                        <div className="bg-zinc-900 p-2 rounded-full text-brand-red">
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <div className="bg-zinc-900 p-2 rounded-full text-brand-red shrink-0">
+                          <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         </div>
                         <div>
-                          <strong className="block text-white">Free PT Session</strong>
-                          <span className="text-zinc-400 text-sm">Every new member gets a free consultation.</span>
+                          <strong className="block text-white text-sm md:text-base">Free PT Session</strong>
+                          <span className="text-zinc-400 text-[11px] md:text-sm">Every new member gets a free consultation.</span>
                         </div>
                       </li>
                       <li className="flex items-start gap-4">
-                        <div className="bg-zinc-900 p-2 rounded-full text-brand-red">
-                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        <div className="bg-zinc-900 p-2 rounded-full text-brand-red shrink-0">
+                          <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                         </div>
                         <div>
-                          <strong className="block text-white">No Hidden Fees</strong>
-                          <span className="text-zinc-400 text-sm">Simple, transparent pricing options.</span>
+                          <strong className="block text-white text-sm md:text-base">No Hidden Fees</strong>
+                          <span className="text-zinc-400 text-[11px] md:text-sm">Simple, transparent pricing options.</span>
                         </div>
                       </li>
                     </ul>
@@ -377,7 +389,7 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
 
             <button 
                 onClick={() => setStep('membership-type')}
-                className="bg-brand-red text-white px-12 py-5 font-black uppercase tracking-wider text-xl hover:bg-red-600 transition-all transform hover:scale-105 shadow-lg shadow-red-900/20"
+                className="bg-brand-red text-white px-8 md:px-12 py-4 md:py-5 font-black uppercase tracking-wider text-base md:text-xl hover:bg-red-600 transition-all transform hover:scale-105 shadow-lg shadow-red-900/20"
             >
                 View Pricing Options
             </button>
@@ -386,36 +398,36 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
 
         {step === 'membership-type' && (
           <div className="animate-fade-in text-center">
-            <div className="mb-8">
+            <div className="mb-6 md:mb-8">
               <button 
                 onClick={() => setStep('membership-info')}
-                className="text-zinc-500 hover:text-white text-sm uppercase font-bold flex items-center justify-center gap-2 mx-auto"
+                className="text-zinc-500 hover:text-white text-xs md:text-sm uppercase font-bold flex items-center justify-center gap-2 mx-auto"
               >
                 ← Back
               </button>
             </div>
-            <h3 className="text-3xl md:text-5xl font-black uppercase italic text-white mb-8 md:mb-16">How do you prefer to pay?</h3>
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <h3 className="text-2xl md:text-5xl font-black uppercase italic text-white mb-8 md:mb-16">How do you prefer to pay?</h3>
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
               <button 
                 onClick={() => handleMemTypeSelect('weekly')}
-                className="group bg-zinc-800 p-10 md:p-14 hover:bg-brand-red transition-all duration-300 border border-zinc-700 hover:border-brand-red flex flex-col items-center"
+                className="group bg-zinc-800 p-8 md:p-14 hover:bg-brand-red transition-all duration-300 border border-zinc-700 hover:border-brand-red flex flex-col items-center"
               >
-                <div className="w-16 h-16 bg-black rounded-full mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
-                  <span className="text-2xl font-black text-white group-hover:text-brand-red">$W</span>
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-black rounded-full mb-4 md:mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
+                  <span className="text-xl md:text-2xl font-black text-white group-hover:text-brand-red">$W</span>
                 </div>
-                <h4 className="text-2xl font-black uppercase italic mb-2">Weekly Billing</h4>
-                <p className="text-zinc-400 text-sm group-hover:text-white/90">Lower recurring payments. Flexible & Contract options.</p>
+                <h4 className="text-xl md:text-2xl font-black uppercase italic mb-2">Weekly Billing</h4>
+                <p className="text-zinc-400 text-xs md:text-sm group-hover:text-white/90">Lower recurring payments. Flexible & Contract options.</p>
               </button>
 
               <button 
                 onClick={() => handleMemTypeSelect('paid-in-full')}
-                className="group bg-zinc-800 p-10 md:p-14 hover:bg-brand-red transition-all duration-300 border border-zinc-700 hover:border-brand-red flex flex-col items-center"
+                className="group bg-zinc-800 p-8 md:p-14 hover:bg-brand-red transition-all duration-300 border border-zinc-700 hover:border-brand-red flex flex-col items-center"
               >
-                <div className="w-16 h-16 bg-black rounded-full mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
-                   <span className="text-2xl font-black text-white group-hover:text-brand-red">$$$</span>
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-black rounded-full mb-4 md:mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
+                   <span className="text-xl md:text-2xl font-black text-white group-hover:text-brand-red">$$$</span>
                 </div>
-                <h4 className="text-2xl font-black uppercase italic mb-2">Paid In Full</h4>
-                <p className="text-zinc-400 text-sm group-hover:text-white/90">One time payment. Fixed Terms (1 month - 1 year).</p>
+                <h4 className="text-xl md:text-2xl font-black uppercase italic mb-2">Paid In Full</h4>
+                <p className="text-zinc-400 text-xs md:text-sm group-hover:text-white/90">One time payment. Fixed Terms (1 month - 1 year).</p>
               </button>
             </div>
           </div>
@@ -423,11 +435,11 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
 
         {step === 'results' && (
             <div className="animate-fade-in h-full flex flex-col">
-              <div className="mb-6 shrink-0">
+              <div className="mb-4 md:mb-6 shrink-0">
                 {!initialMode && (
                   <button 
                     onClick={() => category === 'membership' ? setStep('membership-type') : setStep('category')}
-                    className="text-zinc-500 hover:text-white text-sm uppercase font-bold flex items-center gap-2"
+                    className="text-zinc-500 hover:text-white text-xs md:text-sm uppercase font-bold flex items-center gap-2"
                   >
                     ← Back
                   </button>
