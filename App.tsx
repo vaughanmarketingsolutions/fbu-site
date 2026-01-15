@@ -6,9 +6,8 @@ import PersonalTrainingPage from './components/PersonalTrainingPage';
 import MembershipPage from './components/MembershipPage';
 import ContactPage from './components/ContactPage';
 import TrainerProfile from './components/TrainerProfile';
-import TrainerBookingModal from './components/TrainerBookingModal';
 import { trainers } from './data';
-import { Trainer } from './types';
+import { Trainer, MembershipType, Category } from './types';
 
 type View = 'home' | 'classes' | 'training' | 'membership' | 'contact' | 'trainer-profile';
 
@@ -30,11 +29,11 @@ const NavLink: React.FC<NavLinkProps> = ({ label, active, onClick }) => (
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('home');
   const [selectedTrainerId, setSelectedTrainerId] = useState<string | null>(null);
-  const [bookingTrainer, setBookingTrainer] = useState<Trainer | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [quizOpen, setQuizOpen] = useState(false);
-  const [quizInitialMode, setQuizInitialMode] = useState<'weekly' | 'paid-in-full' | null>(null);
+  const [quizInitialMode, setQuizInitialMode] = useState<MembershipType | null>(null);
+  const [quizInitialCategory, setQuizInitialCategory] = useState<Category | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,8 +49,9 @@ const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleJoinClick = (type?: 'weekly' | 'paid-in-full') => {
+  const handleJoinClick = (type?: MembershipType, category?: Category) => {
     setQuizInitialMode(type || null);
+    setQuizInitialCategory(category || null);
     setQuizOpen(true);
     setMobileMenuOpen(false);
   };
@@ -60,10 +60,6 @@ const App: React.FC = () => {
     setSelectedTrainerId(trainerId);
     setCurrentView('trainer-profile');
     setMobileMenuOpen(false);
-  };
-
-  const handleBookTrainer = (trainer: Trainer) => {
-    setBookingTrainer(trainer);
   };
 
   const renderContent = () => {
@@ -85,7 +81,7 @@ const App: React.FC = () => {
           <TrainerProfile 
             trainer={trainer} 
             onBack={() => setCurrentView('training')} 
-            onBook={() => handleBookTrainer(trainer)}
+            onBook={() => handleJoinClick(undefined, 'training')}
           />
         );
       default:
@@ -96,13 +92,12 @@ const App: React.FC = () => {
   return (
     <div className="bg-black min-h-screen text-white overflow-x-hidden flex flex-col">
       {/* Quiz Modal */}
-      {quizOpen && <JoinQuiz onClose={() => setQuizOpen(false)} initialMode={quizInitialMode} onTrainerSelect={handleTrainerClick} />}
-
-      {/* Booking Modal */}
-      {bookingTrainer && (
-        <TrainerBookingModal 
-          trainer={bookingTrainer} 
-          onClose={() => setBookingTrainer(null)} 
+      {quizOpen && (
+        <JoinQuiz 
+          onClose={() => setQuizOpen(false)} 
+          initialMode={quizInitialMode} 
+          initialCategory={quizInitialCategory}
+          onTrainerSelect={handleTrainerClick} 
         />
       )}
 

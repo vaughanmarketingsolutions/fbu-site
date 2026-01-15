@@ -1,27 +1,12 @@
 import React from 'react';
 import { trainers } from '../data';
+import JoinQuiz from './JoinQuiz';
 
 interface PersonalTrainingPageProps {
   onTrainerClick: (id: string) => void;
 }
 
 const PersonalTrainingPage: React.FC<PersonalTrainingPageProps> = ({ onTrainerClick }) => {
-  const weeklyPTPackages = [
-    { sessions: "1x", time: "30 min", price: "$38.00", link: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/9fe888d62ad8315dceb961c5b38334f2" },
-    { sessions: "1x", time: "60 min", price: "$70.00", link: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/34cb513485cffdeb4fda35ce16faa96c" },
-    { sessions: "2x", time: "30 min", price: "$75.00", link: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/c6991c8b54c7deddc7445b75c889d1b0" },
-    { sessions: "2x", time: "45 min", price: "$110.00", badge: "Fixed Term", link: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/5a6f264b5e50b620c2838dcd145a275a" },
-    { sessions: "2x", time: "60 min", price: "$140.00", link: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/dca057cada50dee96d97faa070fa885d" },
-    { sessions: "3x", time: "30 min", price: "$110.00", link: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/32fb41f0ce60f673a51b5f5f365a9db9" },
-    { sessions: "3x", time: "60 min", price: "$210.00", link: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup/details/c6fb3dc000d46d955e71419b9adb6bea" },
-  ];
-
-  const fullCostPTPackages = [
-    { sessions: "1x", time: "45 min", price: "$200.00", label: "4 Weeks / Paid in Full", desc: "Complete 1-on-1 focus with custom programming and nutrition.", link: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup" },
-    { sessions: "3x", time: "Sessions", price: "$99.00", label: "3 Sessions Starter", isPopular: true, desc: "3 sessions with a trainer to get you going. Perfect for trying us out!", link: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup" },
-    { sessions: "3x", time: "45 min", price: "$600.00", label: "4 Weeks / Paid in Full", desc: "Elite level coaching block with intensive body composition checks.", link: "https://fitbodiesunlimited.gymmasteronline.com/portal/signup" },
-  ];
-
   return (
     <div className="pt-32 pb-20 bg-zinc-950 min-h-screen">
         <div className="container mx-auto px-6">
@@ -70,80 +55,23 @@ const PersonalTrainingPage: React.FC<PersonalTrainingPageProps> = ({ onTrainerCl
             ))}
           </div>
 
-          {/* Full Cost Packages Section */}
-          <div id="full-cost" className="mb-24 scroll-mt-32">
+          {/* Inline Quiz Section (Cleaner Pricing Replacement) */}
+          <div className="mb-24">
              <div className="text-center mb-12">
-                <h3 className="text-3xl md:text-4xl font-black uppercase italic text-white mb-4">Paid In Full Packages</h3>
-                <p className="text-zinc-500">One-time payment options for dedicated PT blocks.</p>
+                <h3 className="text-3xl md:text-4xl font-black uppercase italic text-white mb-4">Training Plans & Pricing</h3>
+                <p className="text-zinc-500 max-w-xl mx-auto">Skip the static lists. Use our interactive planner to find the exact coaching package that fits your goals and budget.</p>
              </div>
              
-             <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                {fullCostPTPackages.map((pkg, idx) => (
-                  <div key={idx} className={`p-8 border-2 transition-all flex flex-col relative rounded ${pkg.isPopular ? 'bg-brand-red border-white shadow-2xl scale-105 z-10' : 'bg-zinc-900 border-zinc-800'}`}>
-                    {pkg.isPopular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-brand-red font-black uppercase text-[10px] px-4 py-1 rounded-full shadow-lg">Most Popular</div>
-                    )}
-                    <div className="mb-6">
-                       <h4 className="text-2xl font-black uppercase italic text-white leading-none mb-1">{pkg.sessions} <span className="text-sm font-bold opacity-80">{pkg.time}</span></h4>
-                       <p className={`text-xs font-bold uppercase tracking-widest ${pkg.isPopular ? 'text-white' : 'text-brand-red'}`}>{pkg.label}</p>
-                    </div>
-                    <p className={`text-sm mb-8 flex-1 ${pkg.isPopular ? 'text-white/90' : 'text-zinc-400'}`}>{pkg.desc}</p>
-                    <div className="mb-8">
-                       <span className="block text-4xl font-black text-white">{pkg.price}</span>
-                       <span className={`text-[10px] font-bold uppercase tracking-widest ${pkg.isPopular ? 'text-white/70' : 'text-zinc-500'}`}>Full Cost by Billing</span>
-                    </div>
-                    <a 
-                      href={pkg.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className={`block w-full py-4 text-center font-black uppercase transition-all transform active:scale-95 text-sm shadow-lg ${pkg.isPopular ? 'bg-white text-brand-red hover:bg-zinc-100' : 'bg-brand-red text-white hover:bg-red-600'}`}
-                    >
-                      Enroll Now
-                    </a>
-                  </div>
-                ))}
+             <div className="max-w-5xl mx-auto shadow-2xl">
+                <JoinQuiz 
+                    inline={true} 
+                    initialCategory="training" 
+                    onTrainerSelect={onTrainerClick} 
+                />
              </div>
           </div>
 
-          {/* Weekly Packages Section */}
-          <div id="weekly" className="mb-24 scroll-mt-32">
-             <div className="text-center mb-12">
-                <h3 className="text-3xl md:text-4xl font-black uppercase italic text-white mb-4">Weekly Billing Packages</h3>
-                <p className="text-zinc-500">Recurring weekly payments for ongoing coaching blocks.</p>
-             </div>
-             
-             <div className="grid gap-4 max-w-5xl mx-auto">
-                {weeklyPTPackages.map((pkg, idx) => (
-                  <div key={idx} className="bg-zinc-900 border border-zinc-800 p-6 flex flex-col md:flex-row justify-between items-center group hover:border-brand-red transition-colors rounded">
-                    <div className="flex flex-col md:flex-row gap-6 items-center text-center md:text-left mb-6 md:mb-0">
-                       <div className="bg-brand-red text-white font-black italic px-4 py-2 text-xl italic skew-x-[-12deg] group-hover:scale-110 transition-transform">
-                          {pkg.sessions} <span className="text-xs">{pkg.time}</span>
-                       </div>
-                       <div>
-                          <h4 className="text-white font-black uppercase italic text-lg leading-none mb-2">4 Weeks PT Block</h4>
-                          <p className="text-zinc-500 text-xs max-w-sm">Custom workouts, nutritional advice, and movement assessments.</p>
-                       </div>
-                    </div>
-                    <div className="flex flex-col md:flex-row items-center gap-6">
-                       <div className="text-center md:text-right">
-                          <span className="block text-2xl font-black text-white">{pkg.price}</span>
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Weekly by Billing {pkg.badge ? `• ${pkg.badge}` : ''}</span>
-                       </div>
-                       <a 
-                        href={pkg.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="bg-white text-black font-black uppercase px-8 py-3 hover:bg-brand-red hover:text-white transition-all transform active:scale-95 text-sm"
-                       >
-                         Sign Up
-                       </a>
-                    </div>
-                  </div>
-                ))}
-                <p className="text-center text-zinc-600 text-[10px] uppercase font-bold tracking-[0.2em] mt-6">Early Cancelation fee is 25% of the remaining balance of the contract. • No Signup Fee.</p>
-             </div>
-          </div>
-
+          {/* Philosophy Section */}
           <div className="bg-zinc-900 p-10 rounded-lg border border-zinc-800 text-center">
              <h3 className="text-3xl font-black uppercase italic text-white mb-6">Our Philosophy</h3>
              <div className="grid md:grid-cols-3 gap-8">

@@ -40,3 +40,6 @@ export interface PricingTier {
   features: string[];
   recommended?: boolean;
 }
+
+export type MembershipType = 'weekly' | 'paid-in-full';
+export type Category = 'membership' | 'classes' | 'training';

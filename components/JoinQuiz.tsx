@@ -1,9 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { trainers } from '../data';
+import { MembershipType, Category } from '../types';
 
 type QuizStep = 'category' | 'membership-info' | 'membership-type' | 'results' | 'pt-payment-type' | 'pt-quiz';
-type Category = 'membership' | 'classes' | 'training';
-type MembershipType = 'weekly' | 'paid-in-full';
 type PTPaymentType = 'weekly' | 'full-cost';
 
 interface Plan {
@@ -20,12 +18,22 @@ interface JoinQuizProps {
   onClose?: () => void;
   inline?: boolean;
   initialMode?: MembershipType | null;
+  initialCategory?: Category | null;
   onTrainerSelect?: (trainerId: string) => void;
 }
 
-const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMode = null, onTrainerSelect }) => {
-  const [step, setStep] = useState<QuizStep>(initialMode ? 'results' : 'category');
-  const [category, setCategory] = useState<Category | null>(initialMode ? 'membership' : null);
+const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMode = null, initialCategory = null, onTrainerSelect }) => {
+  // Logic to determine initial step and category
+  const getInitialStep = (): QuizStep => {
+    if (initialMode) return 'results';
+    if (initialCategory === 'training') return 'pt-payment-type';
+    if (initialCategory === 'membership') return 'membership-info';
+    if (initialCategory === 'classes') return 'results';
+    return 'category';
+  };
+
+  const [step, setStep] = useState<QuizStep>(getInitialStep());
+  const [category, setCategory] = useState<Category | null>(initialMode ? 'membership' : initialCategory);
   const [memType, setMemType] = useState<MembershipType | null>(initialMode);
   const [ptPaymentType, setPtPaymentType] = useState<PTPaymentType | null>(null);
   
