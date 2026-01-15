@@ -607,7 +607,9 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
                 className="group bg-zinc-800 p-8 md:p-14 hover:bg-brand-red transition-all duration-300 border border-zinc-700 hover:border-brand-red flex flex-col items-center"
               >
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-black rounded-full mb-4 md:mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
-                  <span className="text-xl md:text-2xl font-black text-white group-hover:text-brand-red">$W</span>
+                  <svg className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
                 <h4 className="text-xl md:text-2xl font-black uppercase italic mb-2">Weekly Billing</h4>
                 <p className="text-zinc-400 text-xs md:text-sm group-hover:text-white/90">Lower recurring payments. Flexible & Contract options.</p>
@@ -645,7 +647,9 @@ const JoinQuiz: React.FC<JoinQuizProps> = ({ onClose, inline = false, initialMod
               >
                 <div className="absolute top-4 right-4 bg-zinc-900 border border-brand-red text-brand-red text-[10px] font-black uppercase px-2 py-0.5 rounded shadow group-hover:bg-white transition-colors">Requires Quiz</div>
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-black rounded-full mb-4 md:mb-6 flex items-center justify-center group-hover:bg-white transition-colors">
-                  <span className="text-xl md:text-2xl font-black text-white group-hover:text-brand-red">W</span>
+                  <svg className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
                 <h4 className="text-xl md:text-2xl font-black uppercase italic mb-2">Weekly Billing</h4>
                 <p className="text-zinc-400 text-xs md:text-sm group-hover:text-white/90">Choose your sessions via our quick dropdown quiz.</p>
