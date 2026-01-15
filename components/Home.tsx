@@ -1,5 +1,4 @@
 import React from 'react';
-import Schedule from './Schedule';
 import JoinQuiz from './JoinQuiz';
 import { trainers } from '../data';
 
@@ -94,25 +93,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
         </div>
       </section>
 
-      {/* Classes Section */}
-      <section className="py-20 md:py-24 bg-black relative">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-red to-transparent opacity-50"></div>
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-brand-red font-bold tracking-widest mb-2 text-xs md:text-sm">TRAINING SCHEDULE</h2>
-            <h3 className="text-3xl md:text-5xl font-black uppercase italic text-white">Dominate Every Day</h3>
-          </div>
-          <Schedule />
-          <div className="text-center mt-10 md:mt-12">
-             <button onClick={() => onNavigate('classes')} className="text-white hover:text-brand-red border-b border-white hover:border-brand-red uppercase font-bold tracking-wider transition-colors pb-1 text-sm">
-                View Full Classes Page →
-             </button>
-          </div>
-        </div>
-      </section>
-
       {/* Trainers Section */}
-      <section className="py-20 md:py-24 bg-zinc-950">
+      <section className="py-20 md:py-24 bg-black">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-black uppercase italic mb-10 md:mb-12 text-center">Meet The <span className="text-brand-red">Team</span></h2>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-12">
@@ -153,7 +135,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
       </section>
 
       {/* Membership Section */}
-      <section className="py-20 md:py-24 bg-black">
+      <section className="py-20 md:py-24 bg-zinc-950">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12 md:mb-16">
             <h3 className="text-3xl md:text-4xl font-black uppercase italic">Choose Your Path</h3>
@@ -166,7 +148,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 md:py-24 bg-zinc-950 relative border-t border-zinc-900">
+      <section className="py-20 md:py-24 bg-black relative border-t border-zinc-900">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12 md:mb-16">
              <h2 className="text-brand-red font-bold tracking-widest mb-2 text-xs md:text-sm">GET IN TOUCH</h2>
