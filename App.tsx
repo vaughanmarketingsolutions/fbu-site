@@ -35,6 +35,8 @@ const App: React.FC = () => {
   const [quizInitialMode, setQuizInitialMode] = useState<MembershipType | null>(null);
   const [quizInitialCategory, setQuizInitialCategory] = useState<Category | null>(null);
 
+  const MEMBER_PORTAL_URL = "https://fitbodiesunlimited.gymmasteronline.com/portal/login";
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -116,7 +118,7 @@ const App: React.FC = () => {
             />
           </a>
           
-          <div className="hidden md:flex gap-10 lg:gap-14 items-center">
+          <div className="hidden lg:flex gap-8 lg:gap-12 items-center">
             <NavLink label="Home" active={currentView === 'home'} onClick={() => handleNavClick('home')} />
             <NavLink label="Classes" active={currentView === 'classes'} onClick={() => handleNavClick('classes')} />
             <NavLink label="Trainers" active={currentView === 'training' || currentView === 'trainer-profile'} onClick={() => handleNavClick('training')} />
@@ -124,8 +126,19 @@ const App: React.FC = () => {
             <NavLink label="Contact" active={currentView === 'contact'} onClick={() => handleNavClick('contact')} />
           </div>
 
-          <div className="hidden md:block shrink-0">
-            <button onClick={() => handleJoinClick()} className="bg-white text-black px-8 py-3 font-black uppercase italic hover:bg-brand-red hover:text-white transition-colors">
+          <div className="hidden md:flex items-center gap-4 shrink-0">
+            <a 
+              href={MEMBER_PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-white/30 text-white px-6 py-3 font-black uppercase italic hover:bg-white hover:text-black transition-all text-xs lg:text-sm"
+            >
+              Member Portal
+            </a>
+            <button 
+              onClick={() => handleJoinClick()} 
+              className="bg-white text-black px-8 py-3 font-black uppercase italic hover:bg-brand-red hover:text-white transition-colors text-xs lg:text-sm"
+            >
               Join Now
             </button>
           </div>
@@ -146,14 +159,29 @@ const App: React.FC = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden absolute top-full left-0 w-full bg-zinc-900 border-b border-zinc-800 transition-all duration-300 ${mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+        <div className={`md:hidden absolute top-full left-0 w-full bg-zinc-900 border-b border-zinc-800 transition-all duration-300 ${mobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
           <div className="flex flex-col items-center gap-6 py-8">
             <NavLink label="Home" active={currentView === 'home'} onClick={() => handleNavClick('home')} />
             <NavLink label="Classes" active={currentView === 'classes'} onClick={() => handleNavClick('classes')} />
             <NavLink label="Trainers" active={currentView === 'training'} onClick={() => handleNavClick('training')} />
             <NavLink label="Membership" active={currentView === 'membership'} onClick={() => handleNavClick('membership')} />
             <NavLink label="Contact" active={currentView === 'contact'} onClick={() => handleNavClick('contact')} />
-            <button onClick={() => handleJoinClick()} className="bg-brand-red px-8 py-3 font-bold uppercase">Join Now</button>
+            <div className="flex flex-col w-full px-6 gap-3">
+              <a 
+                href={MEMBER_PORTAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full text-center border border-white/30 text-white py-3 font-bold uppercase"
+              >
+                Member Portal
+              </a>
+              <button 
+                onClick={() => handleJoinClick()} 
+                className="w-full bg-brand-red text-white py-3 font-bold uppercase"
+              >
+                Join Now
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -207,6 +235,7 @@ const App: React.FC = () => {
                 <li><button onClick={() => handleNavClick('classes')} className="hover:text-brand-red transition-colors uppercase text-sm font-bold text-left">Classes</button></li>
                 <li><button onClick={() => handleNavClick('membership')} className="hover:text-brand-red transition-colors uppercase text-sm font-bold text-left">Pricing</button></li>
                 <li><button onClick={() => handleNavClick('training')} className="hover:text-brand-red transition-colors uppercase text-sm font-bold text-left">Trainers</button></li>
+                <li><a href={MEMBER_PORTAL_URL} target="_blank" rel="noopener noreferrer" className="hover:text-brand-red transition-colors uppercase text-sm font-bold text-left block">Member Portal</a></li>
               </ul>
             </div>
             

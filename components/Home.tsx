@@ -8,6 +8,8 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
+  const MEMBER_PORTAL_URL = "https://fitbodiesunlimited.gymmasteronline.com/portal/login";
+
   const scrollToOfferings = () => {
     const element = document.getElementById('offerings');
     if (element) {
@@ -45,6 +47,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
             >
               Start Your Journey
             </button>
+            <a 
+              href={MEMBER_PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-transparent border-2 border-white text-white px-8 md:px-10 py-4 md:py-5 font-black uppercase tracking-wider hover:bg-white hover:text-black transition-all transform hover:scale-105 shadow-xl"
+            >
+              Member Portal
+            </a>
           </div>
         </div>
         
