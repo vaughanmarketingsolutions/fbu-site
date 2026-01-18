@@ -8,7 +8,7 @@ interface PersonalTrainingPageProps {
 
 const PersonalTrainingPage: React.FC<PersonalTrainingPageProps> = ({ onTrainerClick }) => {
   return (
-    <div className="pt-32 pb-20 bg-zinc-950 min-h-screen">
+    <div className="pt-40 md:pt-48 pb-20 bg-zinc-950 min-h-screen">
         <div className="container mx-auto px-6">
           {/* Header */}
           <div className="text-center mb-16 animate-fade-in-up">

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ClassesPage: React.FC = () => {
   return (
-    <div className="pt-32 pb-20 bg-black min-h-screen">
+    <div className="pt-40 md:pt-48 pb-20 bg-black min-h-screen">
        <div className="container mx-auto px-6">
           <div className="text-center mb-16 animate-fade-in-up">
             <h2 className="text-brand-red font-bold tracking-widest mb-2 uppercase">ELITE TRAINING PROGRAMS</h2>

@@ -30,7 +30,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/60"></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10 text-center">
+        <div className="container mx-auto px-6 relative z-10 text-center pt-24 md:pt-32">
           <h1 className="text-4xl md:text-7xl lg:text-9xl font-black uppercase italic leading-none mb-6 md:mb-8 animate-fade-in-up">
             Unleash<br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500 pr-2 md:pr-4">Unlimited</span>

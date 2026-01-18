@@ -6,7 +6,7 @@ interface MembershipPageProps {
 
 const MembershipPage: React.FC<MembershipPageProps> = ({ onJoinClick }) => {
   return (
-    <div className="pt-24 md:pt-32 pb-20 bg-black min-h-screen relative overflow-hidden">
+    <div className="pt-44 md:pt-60 pb-20 bg-black min-h-screen relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-brand-red opacity-5 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 md:w-96 md:h-96 bg-brand-red opacity-5 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -31,7 +31,7 @@ const MembershipPage: React.FC<MembershipPageProps> = ({ onJoinClick }) => {
              </div>
              <div className="bg-zinc-900/50 p-6 md:p-8 border border-zinc-800 rounded-lg text-center hover:border-brand-red transition-colors group animate-fade-in delay-100">
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-black rounded-full mx-auto mb-4 md:mb-6 flex items-center justify-center text-brand-red group-hover:bg-brand-red group-hover:text-white transition-colors">
-                   <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                   <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
                 </div>
                 <h4 className="text-lg md:text-xl font-bold uppercase text-white mb-2">Top Tier Equipment</h4>
                 <p className="text-zinc-400 text-sm md:text-base">Hammer Strength, Rogue Power Racks, and specialty bars for serious lifters.</p>
@@ -69,26 +69,28 @@ const MembershipPage: React.FC<MembershipPageProps> = ({ onJoinClick }) => {
             </div>
 
             {/* Paid In Full */}
-            <div className="bg-zinc-900 border border-zinc-800 p-6 md:p-10 flex flex-col relative group hover:border-zinc-600 transition-colors animate-fade-in-up delay-100">
+            <div className="bg-zinc-900 border border-zinc-800 p-6 md:p-10 flex flex-col relative group hover:border-brand-red transition-all transform md:hover:-translate-y-2 animate-fade-in-up delay-100">
               <h4 className="text-2xl md:text-3xl font-black uppercase italic text-white mb-4">Paid In Full</h4>
               <div className="mb-6">
                 <span className="text-zinc-500 font-bold block text-xs md:text-sm mb-1">Starting at</span>
-                <span className="text-4xl md:text-6xl font-black text-white">$55</span>
-                <span className="text-zinc-500 font-bold uppercase text-xs md:text-sm">/ term</span>
+                <span className="text-4xl md:text-6xl font-black text-white">$55.00</span>
               </div>
               <p className="text-zinc-400 text-xs md:text-sm mb-6 pb-6 border-b border-zinc-800">
-                One time payment. Fixed term access. No recurring billing.
+                One-time payment for a fixed term. No recurring fees.
               </p>
               <ul className="space-y-3 md:space-y-4 flex-1 mb-8">
-                <li className="flex items-start gap-3 text-zinc-300 text-sm md:text-base"><span className="text-brand-red">✓</span> 24/7 Access to Both Locations</li>
-                <li className="flex items-start gap-3 text-zinc-300 text-sm md:text-base"><span className="text-brand-red">✓</span> 1 Month to 1 Year Options</li>
-                <li className="flex items-start gap-3 text-zinc-300 text-sm md:text-base"><span className="text-brand-red">✓</span> Best Long Term Savings</li>
-                <li className="flex items-start gap-3 text-zinc-300 text-sm md:text-base"><span className="text-brand-red">✓</span> No Signup Fee</li>
-                <li className="flex items-start gap-3 text-zinc-300 text-sm md:text-base"><span className="text-brand-red">✓</span> No Monthly Fees</li>
+                <li className="flex items-start gap-3 text-zinc-300 text-sm md:text-base font-bold"><span className="text-brand-red">✓</span> Terms from 1 Month to 1 Year</li>
+                <li className="flex items-start gap-3 text-zinc-300 text-sm md:text-base font-bold"><span className="text-brand-red">✓</span> Best value for long-term commit</li>
+                <li className="flex items-start gap-3 text-zinc-300 text-sm md:text-base font-bold"><span className="text-brand-red">✓</span> No Signup Fees</li>
+                <li className="flex items-start gap-3 text-zinc-300 text-sm md:text-base font-bold"><span className="text-brand-red">✓</span> 2 Free PT Sessions with 6mo+</li>
               </ul>
-              <button onClick={() => onJoinClick('paid-in-full')} className="w-full py-4 border border-white text-white font-black uppercase hover:bg-white hover:text-black transition-colors text-sm md:text-base">View Fixed Terms</button>
+              <button onClick={() => onJoinClick('paid-in-full')} className="w-full py-4 bg-white text-black font-black uppercase hover:bg-brand-red hover:text-white transition-colors shadow-lg text-sm md:text-base">View Fixed Terms</button>
             </div>
           </div>
+          
+          <p className="text-center text-zinc-500 text-xs md:text-sm uppercase tracking-widest font-bold">
+            All memberships include access to both Newport News and Yorktown locations.
+          </p>
         </div>
     </div>
   );
