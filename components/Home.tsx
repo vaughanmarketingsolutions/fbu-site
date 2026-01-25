@@ -1,5 +1,4 @@
 import React from 'react';
-import JoinQuiz from './JoinQuiz';
 import { trainers } from '../data';
 
 interface HomeProps {
@@ -144,68 +143,24 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onTrainerClick }) => {
         </div>
       </section>
 
-      {/* Membership Section */}
-      <section className="py-20 md:py-24 bg-zinc-950">
+      {/* Contact Info (Quick View) */}
+      <section className="py-20 md:py-24 bg-zinc-950 border-t border-zinc-900">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-12 md:mb-16">
-            <h3 className="text-3xl md:text-4xl font-black uppercase italic">Choose Your Path</h3>
-            <p className="text-zinc-500 mt-4 text-sm md:text-base">Find the perfect plan for your goals.</p>
-          </div>
-          <div className="max-w-7xl mx-auto">
-            <JoinQuiz inline onTrainerSelect={onTrainerClick} />
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-20 md:py-24 bg-black relative border-t border-zinc-900">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12 md:mb-16">
-             <h2 className="text-brand-red font-bold tracking-widest mb-2 text-xs md:text-sm">GET IN TOUCH</h2>
-             <h3 className="text-3xl md:text-5xl font-black uppercase italic text-white">Connect With Us</h3>
-             <p className="text-zinc-500 mt-4 text-sm md:text-base max-w-xl mx-auto">Questions about membership? Want to schedule a tour? Reach out through any of our channels.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-             <div className="bg-zinc-900 border border-zinc-800 p-8 md:p-10 rounded-lg text-center shadow-xl">
-                <h4 className="text-xl md:text-2xl font-bold uppercase italic text-white mb-6 flex items-center justify-center gap-3"><span className="text-brand-red">▸</span> Location</h4>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-white font-bold text-base md:text-lg mb-1">Newport News:</p>
-                    <p className="text-zinc-400 text-sm md:text-base">135 Harpersville Rd<br/>Newport News, VA 23601</p>
-                  </div>
-                  <div className="pt-2">
-                    <p className="text-white font-bold text-base md:text-lg mb-1">Yorktown:</p>
-                    <p className="text-zinc-400 text-sm md:text-base">2900 Hampton Hwy I<br/>Yorktown, VA 23693</p>
-                  </div>
-                </div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+             <div className="text-center p-8 bg-zinc-900 border border-zinc-800 rounded-lg">
+                <h4 className="text-white font-black uppercase mb-4">Locations</h4>
+                <p className="text-zinc-500 text-sm">Newport News & Yorktown, VA</p>
+                <button onClick={() => onNavigate('contact')} className="text-brand-red font-bold text-xs uppercase mt-4">Get Directions</button>
              </div>
-             
-             <div className="bg-zinc-900 border border-zinc-800 p-8 md:p-10 rounded-lg text-center shadow-xl">
-                <h4 className="text-xl md:text-2xl font-bold uppercase italic text-white mb-6 flex items-center justify-center gap-3"><span className="text-brand-red">▸</span> Hours</h4>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-white font-bold text-base md:text-lg">Members Access:</p>
-                    <p className="text-brand-red font-black text-xl md:text-2xl uppercase">24/7 Access</p>
-                  </div>
-                  <div className="pt-2">
-                    <p className="text-white font-bold text-base md:text-lg">Staffed Hours:</p>
-                    <p className="text-zinc-400 text-sm md:text-base">Mon-Fri: 8:00 AM - 9:00 PM</p>
-                  </div>
-                </div>
+             <div className="text-center p-8 bg-zinc-900 border border-zinc-800 rounded-lg">
+                <h4 className="text-white font-black uppercase mb-4">Hours</h4>
+                <p className="text-zinc-500 text-sm italic">Open 24/7 for Members</p>
+                <p className="text-brand-red font-bold text-xs uppercase mt-4">Staffed 8am - 9pm</p>
              </div>
-
-             <div className="bg-zinc-900 border border-zinc-800 p-8 md:p-10 rounded-lg text-center shadow-xl">
-                <h4 className="text-xl md:text-2xl font-bold uppercase italic text-white mb-6 flex items-center justify-center gap-3"><span className="text-brand-red">▸</span> Contact</h4>
-                <div className="space-y-6">
-                  <div>
-                    <p className="text-zinc-500 text-[10px] md:text-xs font-bold uppercase mb-2">Email Support</p>
-                    <p className="text-brand-red font-black text-base md:text-xl break-all">info@fitbodiesunlimited.com</p>
-                  </div>
-                  <div>
-                    <p className="text-zinc-500 text-[10px] md:text-xs font-bold uppercase mb-2">Call/Text Us</p>
-                    <p className="text-white font-black text-xl md:text-2xl">757-344-9844</p>
-                  </div>
-                </div>
+             <div className="text-center p-8 bg-zinc-900 border border-zinc-800 rounded-lg">
+                <h4 className="text-white font-black uppercase mb-4">Contact</h4>
+                <p className="text-zinc-500 text-sm">757-344-9844</p>
+                <p className="text-zinc-500 text-sm">info@fitbodiesunlimited.com</p>
              </div>
           </div>
         </div>

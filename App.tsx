@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import JoinQuiz from './components/JoinQuiz';
 import Home from './components/Home';
 import ClassesPage from './components/ClassesPage';
 import PersonalTrainingPage from './components/PersonalTrainingPage';
 import MembershipPage from './components/MembershipPage';
 import ContactPage from './components/ContactPage';
 import TrainerProfile from './components/TrainerProfile';
+import AICoach from './components/AICoach';
+import JoinQuiz from './components/JoinQuiz';
+import SEO from './components/SEO';
 import { trainers } from './data';
-import { Trainer, MembershipType, Category } from './types';
+import { MembershipType, Category } from './types';
 
 type View = 'home' | 'classes' | 'training' | 'membership' | 'contact' | 'trainer-profile';
 
@@ -37,6 +39,56 @@ const App: React.FC = () => {
 
   const MEMBER_PORTAL_URL = "https://fitbodiesunlimited.gymmasteronline.com/portal/login";
 
+  // URL SYNC LOGIC (SEO STEP 2)
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      // In some environments, accessing location properties can be restricted
+      try {
+        const rawPath = window.location.pathname.substring(1);
+        
+        if (rawPath.startsWith('trainers/')) {
+          const id = rawPath.split('/')[1];
+          setSelectedTrainerId(id);
+          setCurrentView('trainer-profile');
+        } else {
+          const viewName = rawPath === '' ? 'home' : rawPath;
+          const knownViews = ['home', 'classes', 'training', 'membership', 'contact'];
+          
+          if (knownViews.includes(viewName)) {
+            setCurrentView(viewName as View);
+          } else {
+            setCurrentView('home');
+          }
+        }
+      } catch (e) {
+        console.warn("Popstate sync failed:", e);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    
+    // Initial load sync - wrap in try/catch for safety in restricted origins
+    try {
+      const initialPath = window.location.pathname.substring(1);
+      if (initialPath) {
+        if (initialPath.startsWith('trainers/')) {
+          const id = initialPath.split('/')[1];
+          setSelectedTrainerId(id);
+          setCurrentView('trainer-profile');
+        } else {
+          const view = initialPath as View;
+          if (['home', 'classes', 'training', 'membership', 'contact'].includes(view)) {
+            setCurrentView(view);
+          }
+        }
+      }
+    } catch (e) {
+      console.warn("Initial URL sync failed:", e);
+    }
+
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -45,10 +97,18 @@ const App: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (view: string) => {
-    setCurrentView(view as View);
+  const handleNavClick = (view: View) => {
+    setCurrentView(view);
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Update URL without reload - wrapped in try-catch to prevent SecurityError in restricted origins
+    try {
+      const urlPath = view === 'home' ? '/' : `/${view}`;
+      window.history.pushState({ view }, '', urlPath);
+    } catch (e) {
+      console.warn("PushState failed (likely due to origin restrictions):", e);
+    }
   };
 
   const handleJoinClick = (type?: MembershipType, category?: Category) => {
@@ -62,12 +122,18 @@ const App: React.FC = () => {
     setSelectedTrainerId(trainerId);
     setCurrentView('trainer-profile');
     setMobileMenuOpen(false);
+    
+    try {
+      window.history.pushState({ view: 'trainer-profile', trainerId }, '', `/trainers/${trainerId}`);
+    } catch (e) {
+      console.warn("PushState failed for trainer click:", e);
+    }
   };
 
   const renderContent = () => {
     switch (currentView) {
       case 'home':
-        return <Home onNavigate={handleNavClick} onTrainerClick={handleTrainerClick} />;
+        return <Home onNavigate={(page) => handleNavClick(page as View)} onTrainerClick={handleTrainerClick} />;
       case 'classes':
         return <ClassesPage />;
       case 'training':
@@ -82,17 +148,19 @@ const App: React.FC = () => {
         return (
           <TrainerProfile 
             trainer={trainer} 
-            onBack={() => setCurrentView('training')} 
+            onBack={() => handleNavClick('training')} 
             onBook={() => handleJoinClick(undefined, 'training')}
           />
         );
       default:
-        return <Home onNavigate={handleNavClick} onTrainerClick={handleTrainerClick} />;
+        return <Home onNavigate={(page) => handleNavClick(page as View)} onTrainerClick={handleTrainerClick} />;
     }
   };
 
   return (
     <div className="bg-black min-h-screen text-white overflow-x-hidden flex flex-col">
+      <SEO path={currentView === 'trainer-profile' ? `trainers/${selectedTrainerId}` : currentView} />
+      
       {/* Quiz Modal */}
       {quizOpen && (
         <JoinQuiz 
@@ -110,7 +178,7 @@ const App: React.FC = () => {
         }`}
       >
         <div className="w-full px-6 md:px-12 flex justify-between items-center">
-          <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="flex items-center shrink-0">
+          <a href="/" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="flex items-center shrink-0">
             <img 
               src="https://imgur.com/Hz1tXb2.png" 
               alt="Fit Bodies Unlimited" 
@@ -196,7 +264,7 @@ const App: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-1 md:col-span-2">
-              <a href="#" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="mb-6 block">
+              <a href="/" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="mb-6 block">
                 <img 
                   src="https://imgur.com/Hz1tXb2.png" 
                   alt="Fit Bodies Unlimited" 
@@ -262,6 +330,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </footer>
+      <AICoach />
     </div>
   );
 };

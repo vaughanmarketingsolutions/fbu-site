@@ -27,7 +27,7 @@ const ContactPage: React.FC = () => {
                     rel="noopener noreferrer"
                     className="group relative aspect-video w-full bg-zinc-800 rounded flex flex-col items-center justify-center border border-zinc-700 hover:border-brand-red transition-all overflow-hidden"
                    >
-                      <div className="absolute inset-0 bg-[url('https://www.google.com/maps/vt/pb=!1m4!1m3!1i13!2i2360!3i1575!2m3!1e0!2sm!3i420120488!3m8!2sen!3sus!5e1105!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!1e0!23i4111425')]] bg-cover opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                      <div className="absolute inset-0 bg-[url('https://www.google.com/maps/vt/pb=!1m4!1m3!1i13!2i2360!3i1575!2m3!1e0!2sm!3i420120488!3m8!2sen!3sus!5e1105!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!1e0!23i4111425')] bg-cover opacity-20 group-hover:opacity-40 transition-opacity"></div>
                       <svg className="w-10 h-10 text-brand-red mb-2 relative z-10" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                       </svg>
@@ -48,7 +48,7 @@ const ContactPage: React.FC = () => {
                     rel="noopener noreferrer"
                     className="group relative aspect-video w-full bg-zinc-800 rounded flex flex-col items-center justify-center border border-zinc-700 hover:border-brand-red transition-all overflow-hidden"
                    >
-                      <div className="absolute inset-0 bg-[url('https://www.google.com/maps/vt/pb=!1m4!1m3!1i13!2i2361!3i1576!2m3!1e0!2sm!3i420120488!3m8!2sen!3sus!5e1105!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!1e0!23i4111425')]] bg-cover opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                      <div className="absolute inset-0 bg-[url('https://www.google.com/maps/vt/pb=!1m4!1m3!1i13!2i2361!3i1576!2m3!1e0!2sm!3i420120488!3m8!2sen!3sus!5e1105!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!1e0!23i4111425')] bg-cover opacity-20 group-hover:opacity-40 transition-opacity"></div>
                       <svg className="w-10 h-10 text-brand-red mb-2 relative z-10" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                       </svg>

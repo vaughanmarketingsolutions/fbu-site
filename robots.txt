@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fitbodiesunlimited.com/sitemap.xml

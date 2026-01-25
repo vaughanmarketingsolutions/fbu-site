@@ -1,6 +1,8 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { createChatSession, sendMessageToGemini } from '../services/gemini';
 import { ChatMessage, ChatSender } from '../types';
+import { Chat } from "@google/genai";
 
 const AICoach: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,8 +17,8 @@ const AICoach: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   
-  // Use 'any' type for the chat session ref since we are using a mock service
-  const chatSessionRef = useRef<any>(null);
+  // Fix: Provide explicit typing for the chat session reference
+  const chatSessionRef = useRef<Chat | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -65,9 +67,11 @@ const AICoach: React.FC = () => {
           sender: ChatSender.BOT,
           timestamp: new Date()
         }]);
+      } finally {
+        setIsTyping(false);
       }
     } else {
-      // Fallback
+      // Fallback behavior when API session isn't available
       setTimeout(() => {
         setMessages(prev => [...prev, {
           id: 'error',
@@ -75,9 +79,9 @@ const AICoach: React.FC = () => {
           sender: ChatSender.BOT,
           timestamp: new Date()
         }]);
+        setIsTyping(false);
       }, 1000);
     }
-    setIsTyping(false);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
