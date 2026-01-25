@@ -179,7 +179,7 @@ const App: React.FC = () => {
         <div className="w-full px-6 md:px-12 flex justify-between items-center">
           <a href="/" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="flex items-center shrink-0">
             <img 
-              src="https://imgur.com/Hz1tXb2.png" 
+              src="https://i.imgur.com/Hz1tXb2.png" 
               alt="Fit Bodies Unlimited" 
               className="h-12 md:h-16 object-contain" 
             />
@@ -265,7 +265,7 @@ const App: React.FC = () => {
             <div className="col-span-1 md:col-span-2">
               <a href="/" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} className="mb-6 block">
                 <img 
-                  src="https://imgur.com/Hz1tXb2.png" 
+                  src="https://i.imgur.com/Hz1tXb2.png" 
                   alt="Fit Bodies Unlimited" 
                   className="h-12 md:h-16 object-contain" 
                 />

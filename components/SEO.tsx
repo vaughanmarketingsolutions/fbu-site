@@ -43,7 +43,7 @@ const SEO: React.FC<SEOProps> = ({ path }) => {
       "@type": "HealthClub",
       "name": "Fit Bodies Unlimited",
       "url": "https://fitbodiesunlimited.com",
-      "logo": "https://imgur.com/Hz1tXb2.png",
+      "logo": "https://i.imgur.com/Hz1tXb2.png",
       "description": description,
       "telephone": "757-344-9844",
       "priceRange": "$",
