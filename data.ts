@@ -2,7 +2,7 @@ import { Trainer } from './types';
 
 export const trainers: Trainer[] = [
   { 
-    id: '1', 
+    id: 'george-gori', 
     name: 'George Gori', 
     specialty: 'Owner & Personal Trainer', 
     bio: 'Specializing in Rehab, Functional Movement, and helping clients become more functional while pushing their limits.', 
@@ -21,7 +21,7 @@ export const trainers: Trainer[] = [
     ]
   },
   { 
-    id: '5', 
+    id: 'cj-baker', 
     name: 'CJ Baker', 
     specialty: 'Athlete Performance & Tactical', 
     bio: "Goal-driven and results-oriented, providing fast-paced development with clear instruction on the 'what, why, and how' behind every movement.", 
@@ -42,7 +42,7 @@ export const trainers: Trainer[] = [
     ]
   },
   { 
-    id: '2', 
+    id: 'sydney-blake-innanen', 
     name: 'Sydney Blake Innanen', 
     specialty: 'Performance & Postpartum', 
     bio: 'Blending grit, courage, and realistic commitment to turn every setback into progress and build strength and knowledge.', 
@@ -58,7 +58,7 @@ export const trainers: Trainer[] = [
     ]
   },
   { 
-    id: '4', 
+    id: 'elizabeth-marie-beggs', 
     name: 'Elizabeth Marie Beggs', 
     specialty: 'Wellness & Strength', 
     bio: 'Providing tailored exercises and teaching proper form to help you feel confident and capable in the gym.', 
@@ -78,7 +78,7 @@ export const trainers: Trainer[] = [
     ]
   },
   { 
-    id: '3', 
+    id: 'candis-ginnold', 
     name: 'Candis Ginnold', 
     specialty: 'Strength & Conditioning', 
     bio: 'Bringing over a decade of hands-on experience to help you build strength, confidence, and sustainable habits.', 

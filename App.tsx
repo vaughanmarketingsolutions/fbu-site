@@ -5,7 +5,6 @@ import PersonalTrainingPage from './components/PersonalTrainingPage';
 import MembershipPage from './components/MembershipPage';
 import ContactPage from './components/ContactPage';
 import TrainerProfile from './components/TrainerProfile';
-import AICoach from './components/AICoach';
 import JoinQuiz from './components/JoinQuiz';
 import SEO from './components/SEO';
 import { trainers } from './data';
@@ -330,7 +329,6 @@ const App: React.FC = () => {
           </div>
         </div>
       </footer>
-      <AICoach />
     </div>
   );
 };

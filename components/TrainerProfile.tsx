@@ -35,7 +35,7 @@ const TrainerProfile: React.FC<TrainerProfileProps> = ({ trainer, onBack, onBook
               <img 
                 src={trainer.image} 
                 alt={trainer.name} 
-                className={`w-full h-full object-cover ${trainer.id === '1' ? '' : 'scale-125'}`}
+                className={`w-full h-full object-cover ${trainer.id === 'george-gori' ? '' : 'scale-125'}`}
               />
             </div>
             {/* Decorative elements */}
